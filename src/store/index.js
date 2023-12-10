@@ -1,23 +1,14 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {
-    type: "",
-    lang: "",
-    class: "",
+  state() {
+    return {
+      UserAdmin: "", // حالة لتخزين الاسم
+    };
   },
-  getters: {},
   mutations: {
-    updateType(state, payload) {
-      state.type = payload;
-    },
-    updateLang(state, payload) {
-      state.lang = payload;
-    },
-    updateClass(state, payload) {
-      state.class = payload;
+    setUserAdmin(state, UserAdmin) {
+      state.UserAdmin = UserAdmin; // تعيين الاسم
     },
   },
-  actions: {},
-  modules: {},
 });
