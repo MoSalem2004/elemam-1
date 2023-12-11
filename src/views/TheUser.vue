@@ -556,6 +556,15 @@ export default {
       const payArray = washingtonSnap.data().pay;
 
       for (let i = 0; i < payArray.length; i++) {
+        console.log(payArray[i].success);
+        if (payArray[i].success !== "true") {
+          const updatedPayArray = [...payArray];
+
+          // استخدم splice لحذف العنصر المحدد
+          updatedPayArray.splice(i, 1);
+
+          await updateDoc(washingtonRef, { pay: updatedPayArray });
+        }
         if (+urlParams.get("order") === payArray[i].order_id) {
           if (
             urlParams.get("success") !== "true" &&

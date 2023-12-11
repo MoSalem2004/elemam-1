@@ -1,15 +1,5 @@
 <template>
-  <div
-    class="Header border-b border-gray-300"
-    style="
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: transparent;
-      z-index: 100;
-    "
-  >
+  <div class="Header">
     <div class="container flex justify-between items-center gap-2.5">
       <div class="logo">
         <router-link to="/" class="flex items-center gap-2.5">
@@ -53,7 +43,6 @@
               <div v-bind="props">
                 <div
                   class="User_Logo bg-[--main-color] h-10 w-10 text-white rounded-full flex justify-center items-center cursor-pointer"
-                  @click="State"
                 >
                   {{ firstLetters }}
                 </div>
@@ -63,7 +52,7 @@
               <v-list-item>
                 <div style="position: relative">
                   <div class="user">
-                    <div class="user" v-if="state">
+                    <div class="user">
                       <div
                         style="
                           background: #fff;
@@ -289,9 +278,11 @@ export default {
     Header() {
       window.onscroll = () => {
         if (window.scrollY === 0) {
-          document.querySelector(".Header").style.background = "transparent";
+          document.querySelector(".Header").style.cssText =
+            "background: transparent; border-bottom:1px solid transparent;box-shadow: 0 0 0 #ddd";
         } else {
-          document.querySelector(".Header").style.background = "#fff";
+          document.querySelector(".Header").style.cssText =
+            "background: #fff; border-bottom: 1px solid #ddd;box-shadow: 0 0 10px #ddd;";
         }
       };
     },
@@ -402,6 +393,12 @@ export default {
 }
 .Header {
   transition: 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 100;
 }
 .v-list-item-title {
   transition: 00.3s;

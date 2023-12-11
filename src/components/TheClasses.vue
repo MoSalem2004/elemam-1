@@ -281,6 +281,12 @@ export default {
 }
 
 @media (max-width: 767px) {
+  .selecte_1 {
+    flex-direction: column;
+    span {
+      width: 100% !important;
+    }
+  }
   .content > div {
     flex-direction: column;
     & > span {
