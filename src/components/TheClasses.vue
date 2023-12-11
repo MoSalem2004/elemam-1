@@ -284,7 +284,8 @@ export default {
   .selecte_1 {
     flex-direction: column;
     span {
-      width: 100% !important;
+      width: 95% !important;
+      margin: auto;
     }
   }
   .content > div {
@@ -293,6 +294,10 @@ export default {
       width: 90%;
       margin: auto;
     }
+  }
+  .selecte_3 {
+    width: 95% !important;
+    margin: auto;
   }
   .selecte_3 > a {
     width: 90%;

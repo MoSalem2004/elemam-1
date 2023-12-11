@@ -1,5 +1,6 @@
 <template>
   <div
+    id="Main_Class"
     class="Main_Class pt-2.5"
     style="margin-top: -20px; padding-bottom: 50px"
   >
@@ -26,8 +27,15 @@
         </nav>
         <div
           @click="CloseAndOpenAddSub"
-          class="flex items-center gap-2.5 p-2.5 bg-[#fff] rounded cursor-pointer"
+          class="flex items-center gap-2.5 p-2.5 bg-[#fff] rounded cursor-pointer hover-0"
           v-if="UserAdmin === 'Admin'"
+          style="
+            border: 1px solid var(--main-color);
+            margin: 10px;
+            color: var(--main-color);
+            font-weight: bold;
+            font-size: 14px;
+          "
         >
           <font-awesome-icon :icon="['fas', 'plus']" />
           <span>أضف مادة</span>
@@ -100,9 +108,45 @@
                 <span class="text-[--main-color]">تحميل كتاب المادة</span>
               </a>
 
-              <div class="cursor-pointer w-48 mb-2.5">
+              <div
+                class="cursor-pointer w-48 mb-2.5"
+                :class="UserAdmin !== 'Admin' ? 'pointer-events-none' : ''"
+                v-if="UserAdmin === 'Admin'"
+              >
                 <router-link
-                  to="/Main_Testing"
+                  :to="UserAdmin !== 'Admin' ? '' : '/Main_Testing'"
+                  class="border-1 border-[--main-color] flex items-center justify-center gap-2.5 p-2.5 rounded hover-0"
+                >
+                  <font-awesome-icon
+                    :icon="['fas', 'clipboard-question']"
+                    class="text-[dimgrey]"
+                  />
+                  <span class="text-[dimgrey]"> الإختبارات </span>
+                </router-link>
+              </div>
+              <div
+                class="cursor-pointer w-48 mb-2.5"
+                :class="UserAdmin !== 'User' ? 'pointer-events-none' : ''"
+                v-if="UserAdmin === 'User'"
+              >
+                <router-link
+                  :to="UserAdmin !== 'User' ? '' : '/Main_Testing'"
+                  class="border-1 border-[--main-color] flex items-center justify-center gap-2.5 p-2.5 rounded hover-0"
+                >
+                  <font-awesome-icon
+                    :icon="['fas', 'clipboard-question']"
+                    class="text-[dimgrey]"
+                  />
+                  <span class="text-[dimgrey]"> الإختبارات </span>
+                </router-link>
+              </div>
+              <div
+                class="cursor-pointer w-48 mb-2.5"
+                :class="UserAdmin !== 'Admin' ? 'pointer-events-none' : ''"
+                v-if="UserAdmin !== 'User' && UserAdmin !== 'Admin'"
+              >
+                <router-link
+                  :to="UserAdmin !== 'Admin' ? '' : '/Main_Testing'"
                   class="border-1 border-[--main-color] flex items-center justify-center gap-2.5 p-2.5 rounded hover-0"
                 >
                   <font-awesome-icon
@@ -118,7 +162,12 @@
                 class="border p-1 input1 pointer-events-none"
                 :value="Data.BookLink"
                 v-if="UserAdmin === 'Admin'"
-                style="height: 26px; width: 100%"
+                style="
+                  height: 26px;
+                  width: 100%;
+                  padding: 10px !important;
+                  border-radius: 5px;
+                "
               />
             </div>
             <div
@@ -644,7 +693,7 @@ export default {
       PayAllCourse: null,
       snackbar: false,
       text: "تم نسخ الرقم للحافظة",
-      timeout: 200000,
+      timeout: 2000,
     };
   },
   props: ["Main_Id"],
@@ -654,6 +703,9 @@ export default {
     AddSub,
   },
   mounted() {
+    setTimeout(() => {
+      location.href = `${location.href}#Main_Class`;
+    }, 10);
     setTimeout(() => {
       this.getvalues();
     }, 10);
@@ -1002,13 +1054,13 @@ export default {
 
     async Updata() {
       let input1 = document.querySelectorAll(".main_box  input.input1");
-      let input2 = document.querySelectorAll(".main_box  input.input2");
-      let input3 = document.querySelectorAll(".main_box  input.input3");
-      let input4 = document.querySelectorAll(".main_box  input.input4");
-      let input5 = document.querySelectorAll(".main_box  input.input5");
-      let input6 = document.querySelectorAll(".main_box  input.input6");
-      let input7 = document.querySelectorAll(".main_box  input.input7");
-      let input8 = document.querySelectorAll(".main_box  input.input8");
+      // let input2 = document.querySelectorAll(".main_box  input.input2");
+      // let input3 = document.querySelectorAll(".main_box  input.input3");
+      // let input4 = document.querySelectorAll(".main_box  input.input4");
+      // let input5 = document.querySelectorAll(".main_box  input.input5");
+      // let input6 = document.querySelectorAll(".main_box  input.input6");
+      // let input7 = document.querySelectorAll(".main_box  input.input7");
+      // let input8 = document.querySelectorAll(".main_box  input.input8");
       let sentence = localStorage.getItem("updateType");
       let words = sentence.split(" ");
       let firstWord = words[0];
@@ -1021,13 +1073,13 @@ export default {
       );
       await updateDoc(washingtonRef, {
         BookLink: input1[this.num].value,
-        FreeCourse_Video: input2[this.num].value,
-        FreeCourse_Pdf_1: input3[this.num].value,
-        FreeCourse_Pdf_2: input4[this.num].value,
-        CachCourse_Video: input5[this.num].value,
-        CachCourse_PdfPrice_1: input6[this.num].value,
-        CachCourse_PdfPrice_2: input7[this.num].value,
-        AllCourse: input8[this.num].value,
+        // FreeCourse_Video: input2[this.num].value,
+        // FreeCourse_Pdf_1: input3[this.num].value,
+        // FreeCourse_Pdf_2: input4[this.num].value,
+        // CachCourse_Video: input5[this.num].value,
+        // CachCourse_PdfPrice_1: input6[this.num].value,
+        // CachCourse_PdfPrice_2: input7[this.num].value,
+        // AllCourse: input8[this.num].value,
       });
       this.getdata();
     },
@@ -1213,6 +1265,7 @@ td {
   padding: 10px;
   color: var(--main-color);
   width: 50%;
+  font-weight: bold;
 }
 @media (min-width: 1200px) {
 }
